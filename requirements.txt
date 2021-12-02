@@ -1,0 +1,5 @@
+autopep8==1.6.0
+pycodestyle==2.8.0
+selenium==3.141.0
+toml==0.10.2
+urllib3==1.26.7
