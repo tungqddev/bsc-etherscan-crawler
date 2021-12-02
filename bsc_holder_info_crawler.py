@@ -14,6 +14,7 @@ import time
 MIN_TOTAL_VALUE = 20000
 HOLDER_LIST_FILE = './holder_list.csv'
 TOKEN_NAME = 'REQ'
+OUTPUT_INFO_FILE = 'holder_tokens_info.csv'
 
 class BSCHolderInfoCrawler:
 
@@ -74,7 +75,7 @@ class BSCHolderInfoCrawler:
         holder_list_token_li_list = holder_list_token_ul[0].find_elements(
             By.TAG_NAME, "li")
         # [0].find_elements(By.TAG_NAME, "span")
-        with open('holder_tokens_info.csv', 'a', encoding='UTF8') as f:
+        with open(OUTPUT_INFO_FILE, 'a', encoding='UTF8') as f:
             writer = csv.writer(f)
             for li in holder_list_token_li_list[1:]:
                 total_span_tag = li.find_elements(By.TAG_NAME, "span")
