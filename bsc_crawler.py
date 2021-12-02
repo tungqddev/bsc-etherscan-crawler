@@ -14,7 +14,7 @@ import sys
 options = Options()
 options.headless = True
 
-driver = webdriver.Firefox(options=options,executable_path = '/Users/macpro/Downloads/geckodriver')
+driver = webdriver.Firefox(options=options,executable_path = './geckodriver/geckodriver')
 # driver = webdriver.Firefox(executable_path = '/Users/macpro/Downloads/geckodriver')
 driver.implicitly_wait(0)
 token_list_file_path = './token_list.csv'

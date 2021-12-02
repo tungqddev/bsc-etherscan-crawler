@@ -11,10 +11,14 @@ import csv
 import re
 import time
 
+MIN_TOTAL_VALUE = 20000
+HOLDER_LIST_FILE = './holder_list.csv'
+TOKEN_NAME = 'REQ'
+
 class BSCHolderInfoCrawler:
 
     def __init__(self) -> None:
-        MAX_PAGE_NUM = 10
+        
         
         holder_address = self.get_holder_address_list('')
         skip_index = 1
@@ -82,9 +86,9 @@ class BSCHolderInfoCrawler:
                 if len(token_span_1_split) > 1:
                     total_in_dolars = re.sub(',', '', token_span_2[1:])
                     if isfloat(total_in_dolars):
-                        if token_span_1_split[1] == 'ETH':
+                        if token_span_1_split[1] == TOKEN_NAME:
                             continue
-                        if float(total_in_dolars) > 100000:
+                        if float(total_in_dolars) > MIN_TOTAL_VALUE:
                             csv_row = []
                             csv_row.append(xpath_navigation_anchor)
                             csv_row.append(token_span_1_split[1])
@@ -95,7 +99,7 @@ class BSCHolderInfoCrawler:
 
     def get_holder_address_list(self, file_path: str) -> List[str]:
         list_address = []
-        with open('./holder_list.csv', mode='r') as csv_file:
+        with open(HOLDER_LIST_FILE, mode='r') as csv_file:
             csv_reader = csv.DictReader(csv_file)
             line_count = 0
             for row in csv_reader:
